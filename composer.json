@@ -1,0 +1,29 @@
+{
+  "name": "saschaschieferdecker/youtube_gdprembed",
+  "type": "typo3-cms-extension",
+  "description": "Creates a new content type that embeds after click. Preferences can be saved in cookie. No dependency to JS frameworks.",
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "gdpr_youtube"
+  ],
+  "authors": [
+    {
+      "name": "Sascha Schieferdecker",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "typo3/cms-core": ">=9.5.0,<9.6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SaschaSchieferdecker\\YoutubeGdprembed\\": "Classes"
+    }
+  },
+  "replace": {
+    "youtube_gdprembed": "self.version",
+    "typo3-ter/youtube_gdprembed": "self.version"
+  }
+}
+

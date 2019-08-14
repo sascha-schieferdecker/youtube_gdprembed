@@ -1,0 +1,14 @@
+mod.wizards.newContentElement.wizardItems.plugins {
+    elements {
+        catalog {
+            iconIdentifier = tx-youtube-gdprembed-video
+            title = LLL:EXT:youtube_gpdrembed/Resources/Private/Language/locallang_db.xlf:title
+            description = LLL:EXT:youtube_gpdrembed/Resources/Private/Language/locallang_db.xlf:description
+            tt_content_defValues {
+                CType = list
+                list_type = youtubegdprembed_youtube
+            }
+        }
+    }
+    show = *
+}
