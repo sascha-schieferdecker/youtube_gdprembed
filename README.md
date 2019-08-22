@@ -1,6 +1,6 @@
 # youtube_gdprembed
 
-Extension for embedding youtube videos via javascript to comply with GDPR rules. 
+Extension for responsive embedding of youtube videos via javascript to comply with GDPR rules. 
 
 Preferences can be stored in cookie. Option to disable showing related videos via Youtube javascript API. Furthermore the extension tries to fetch preview images from youtube in the background to display them without loading them in the users browser.
 
@@ -15,6 +15,8 @@ composer require saschaschieferdecker/youtube_gdprembed
 or via [TER]
 
 ## Configuration
+
+* Include the Typoscript-Setup in your template
 
 ...
 
