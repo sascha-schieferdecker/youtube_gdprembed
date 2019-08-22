@@ -6,7 +6,7 @@ Preferences can be stored in cookie. Option to disable showing related videos vi
 
 The existing extensions are either not available for TYPO3 v9 or do not fit my usecase.
 
-##Installation
+## Installation
 
 ``
 composer require saschaschieferdecker/youtube_gdprembed
@@ -20,10 +20,16 @@ or via [TER]
 
 ## Notes
 
-...
+Until 2019 you could hide related videos by setting a "rel=0" paramater while embedding. 
+
+This does no longer work. Related videos from your own channel are still shown. 
+
+So this extension makes use of the technique of [Maximilian Laumeister] to hide these related videos by using another Youtube API.
+
 
 ## Contributions
 
 ...
 
 [TER]: https://extensions.typo3.org
+[Maximilian Laumeister]: https://www.maxlaumeister.com/blog/hide-related-videos-in-youtube-embeds/
