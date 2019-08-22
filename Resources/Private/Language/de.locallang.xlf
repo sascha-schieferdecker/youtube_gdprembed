@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="inotec_catalog">
+        <header/>
+        <body>
+            <trans-unit id="title" xml:space="preserve">
+                <source>Youtube GDPR compliant embed</source>
+				<target>Youtube GDPR konforme Einbettung</target>
+			</trans-unit>
+            <trans-unit id="description" xml:space="preserve">
+                <source>User has to click before any content from youtube is loaded</source>
+				<target>Der Benutzer muss erst klicken, bevor das Video abgespielt wird</target>
+			</trans-unit>
+            <trans-unit id="tt_content.youtubegdpr" xml:space="preserve">
+				<source>ID of youtube video</source>
+                <target>ID des Youtube videos</target>
+			</trans-unit>
+            <trans-unit id="tt_content.youtubegdpr_norel" xml:space="preserve">
+				<source>Do not show any related videos after video ends</source>
+                <target>Zeige keine verwandten Videos nach Ende des Abspielvorgangs</target>
+			</trans-unit>
+        </body>
+    </file>
+</xliff>

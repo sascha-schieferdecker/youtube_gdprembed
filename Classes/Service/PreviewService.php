@@ -1,10 +1,9 @@
 <?php
+namespace SaschaSchieferdecker\YoutubeGdprembed\Service;
 
+use TYPO3\CMS\Core\SingletonInterface;
 
-namespace SaschaSchieferdecker\YoutubeGdprembed\Classes\Service;
-
-
-class PreviewService
+class PreviewService implements SingletonInterface
 {
 
 }

@@ -1,14 +1,13 @@
-mod.wizards.newContentElement.wizardItems.plugins {
+mod.wizards.newContentElement.wizardItems.common {
     elements {
-        catalog {
+        youtubegdprembed_youtube {
             iconIdentifier = tx-youtube-gdprembed-video
-            title = LLL:EXT:youtube_gpdrembed/Resources/Private/Language/locallang_db.xlf:title
-            description = LLL:EXT:youtube_gpdrembed/Resources/Private/Language/locallang_db.xlf:description
+            title = LLL:EXT:youtube_gdprembed/Resources/Private/Language/locallang.xlf:title
+            description = LLL:EXT:youtube_gdprembed/Resources/Private/Language/locallang.xlf:description
             tt_content_defValues {
-                CType = list
-                list_type = youtubegdprembed_youtube
+                CType = youtubegdprembed_youtube
             }
         }
     }
-    show = *
+    show := addToList(youtubegdprembed_youtube)
 }

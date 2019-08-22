@@ -13,15 +13,14 @@
       "role": "Developer"
     }
   ],
-  "homepage": "https://github.com/sascha-schieferdecker/youtube_gpdrembed/",
+  "homepage": "https://github.com/sascha-schieferdecker/youtube_gdprembed/",
   "license": "GPL-2.0+",
   "support": {
-    "issues": "https://github.com/sascha-schieferdecker/youtube_gpdrembed/issues"
+    "issues": "https://github.com/sascha-schieferdecker/youtube_gdprembed/issues"
   },
   "require": {
     "typo3/cms-core": ">=9.5.0,<9.6.0",
-    "typo3/cms-frontend": ">=9.5.0,<9.6.0",
-    "typo3/cms-extbase": ">=9.5.0,<9.6.0"
+    "typo3/cms-frontend": ">=9.5.0,<9.6.0"
   },
   "autoload": {
     "psr-4": {

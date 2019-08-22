@@ -3,7 +3,7 @@ tt_content {
     youtubegdprembed_youtube {
         templateName = Youtube.html
         templateRootPaths {
-            0 = EXT:youtube_gpdrembed/Resources/Private/Templates/
+            0 = EXT:youtube_gdprembed/Resources/Private/Templates/
         }
     }
 }

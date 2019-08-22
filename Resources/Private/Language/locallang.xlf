@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="de" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="inotec_catalog">
+    <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="inotec_catalog">
         <header/>
         <body>
             <trans-unit id="title" xml:space="preserve">
-				<source>Produktübersicht Katalog</source>
+				<source>Youtube GDPR compliant embed</source>
 			</trans-unit>
             <trans-unit id="description" xml:space="preserve">
-				<source>Produkte aus XOM ausgeben</source>
+				<source>User has to click before any content from youtube is loaded</source>
 			</trans-unit>
-            <trans-unit id="titleproducts" xml:space="preserve">
-				<source>Produktserien/Produkte Katalog</source>
+            <trans-unit id="tt_content.youtubegdpr" xml:space="preserve">
+				<source>ID of youtube video</source>
 			</trans-unit>
-            <trans-unit id="descriptionproducts" xml:space="preserve">
-				<source>Produktserien/Produkte aus XOM ausgeben</source>
+            <trans-unit id="tt_content.youtubegdpr_norel" xml:space="preserve">
+				<source>Do not show any related videos after video ends</source>
 			</trans-unit>
         </body>
     </file>

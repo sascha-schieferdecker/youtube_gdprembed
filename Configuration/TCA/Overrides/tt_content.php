@@ -1,43 +1,31 @@
 <?php
-/*\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
     array(
-        'Youtube double click video',
+        'Youtube',
         'youtubegdprembed_youtube',
-        'EXT:youtube_gdprembed/ext_icon.svg'
+        ''
     ),
     'CType',
     'youtube_gdprembed'
-);*/
-
-
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    'SaschaSchieferdecker.YoutubeGdprembed',
-    'Youtube',
-    'LLL:EXT:youtube_gpdrembed/Resources/Private/Language/locallang.xlf:title'
 );
-
 
 $GLOBALS['TCA']['tt_content']['types']['youtubegdprembed_youtube'] = array(
     'showitem' => '
-        --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.general;general,header,subheader,youtubegdpr,
-        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.images,image,
-        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,overlay,layout,
-        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.access,
-        --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.visibility;visibility,
-');
+       --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.general;general,youtubegdpr,youtubegdpr_norel,--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames,--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.appearanceLinks;appearanceLinks,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,--palette--;;hidden,--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,--div--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category,categories,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,rowDescription,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended
+    ');
 
 $temporaryColumns = array (
     'youtubegdpr' => array (
         'exclude' => 1,
         'label' => 'LLL:EXT:youtube_gdprembed/Resources/Private/Language/locallang.xlf:tt_content.youtubegdpr',
         'config' => array (
-            'type' => 'text',
+            'type' => 'input',
             'size' => '60',
-            'max'  => '1000'
+            'max'  => '255'
         )
     ),
     'youtubegdpr_norel' => [
-        'exclude' => true,
+        'exclude' => 1,
         'label' => 'LLL:EXT:youtube_gdprembed/Resources/Private/Language/locallang.xlf:tt_content.youtubegdpr_norel',
         'config' => [
             'type' => 'check',

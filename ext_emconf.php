@@ -1,5 +1,5 @@
 <?php
-$EM_CONF['youtube_gpdrembed'] = array(
+$EM_CONF['youtube_gdprembed'] = array(
     'title' => 'Youtube GDPR compliant embed',
     'description' => 'User has to click before any content from youtube is loaded',
     'category' => 'plugin',
