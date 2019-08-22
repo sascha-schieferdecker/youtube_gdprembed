@@ -1,9 +1,14 @@
 tt_content {
-    youtubegdprembed_youtube = FLUIDTEMPLATE
+    youtubegdprembed_youtube =< lib.contentElement
     youtubegdprembed_youtube {
         templateName = Youtube.html
         templateRootPaths {
-            0 = EXT:youtube_gdprembed/Resources/Private/Templates/
+            198 = EXT:youtube_gdprembed/Resources/Private/Templates/
+        }
+        dataProcessing {
+            1 = SaschaSchieferdecker\YoutubeGdprembed\DataProcessing\YoutubeProcessor
         }
     }
 }
+
+
