@@ -1,0 +1,21 @@
+plugin.tx_youtubegdprembed {
+    settings {
+        # cat=plugin.tx_youtubegdprembed; type=integer; label=ID of page with privacy information
+        privacyPage = 152
+
+        # cat=plugin.tx_youtubegdprembed; type=boolean; label=Set a cookie that user has accepted information about youtube
+        persistAcceptance = 1
+
+        # cat=plugin.tx_youtubegdprembed; type=string; label=Template path
+        templateRootPath = EXT:youtube_gdprembed/Resources/Private/Templates/
+
+        # cat=plugin.tx_youtubegdprembed; type=string; label=CSS File
+        cssFile = EXT:youtube_gdprembed/Resources/Public/Css/youtubegdpr.css
+
+        # cat=plugin.tx_youtubegdprembed; type=string; label=Storage and folder for storing the downloaded preview images
+        jsFile = EXT:youtube_gdprembed/Resources/Public/JavaScript/youtubegdpr.js
+
+        # cat=plugin.tx_youtubegdprembed; type=string; label=Storage and folder for storing the downloaded preview images
+        storagePreviewImages = 0:fileadmin/youtube-preview-images
+    }
+}

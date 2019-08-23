@@ -14,8 +14,10 @@ namespace SaschaSchieferdecker\YoutubeGdprembed\DataProcessing;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
+use SaschaSchieferdecker\YoutubeGdprembed\Service\PreviewService;
 
 /**
  * Class for data processing for the content element "My new content element"
@@ -39,6 +41,24 @@ class YoutubeProcessor implements DataProcessorInterface
         array $processedData
     )
     {
+        //DebuggerUtility::var_dump($processedData['data']['youtubegdpr']);
+        $previewService = new PreviewService();
+
+        if ($processedData['data']['youtubegdpr_width'] === 0 && $processedData['data']['youtubegdpr_height'] === 0) {
+            $ytdata = $previewService->getData($processedData['data']['uid'], $processedData['data']['youtubegdpr']);
+            $processedData['data']['youtubegdpr_width'] = $ytdata['width'];
+            $processedData['data']['youtubegdpr_height'] = $ytdata['height'];
+            $processedData['data']['youtubegdpr_previewimage'] = $ytdata['file'];
+        }
+        DebuggerUtility::var_dump([
+            $processedData['data']['youtubegdpr'],
+            $processedData['data']['youtubegdpr_norel'],
+            $processedData['data']['youtubegdpr_width'],
+            $processedData['data']['youtubegdpr_height'],
+            $processedData['data']['youtubegdpr_previewimage'],
+        ]);
+
+
         $processedData['foo'] = 'This variable will be passed to Fluid';
 
         return $processedData;

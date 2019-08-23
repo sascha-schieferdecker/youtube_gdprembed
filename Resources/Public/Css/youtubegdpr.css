@@ -1,0 +1,80 @@
+.frame-type-youtubegdprembed_youtube .acceptgdpr {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.frame-type-youtubegdprembed_youtube .acceptgdpr .btn {
+  margin-top: 1rem;
+}
+
+.frame-type-youtubegdprembed_youtube .acceptgdpr .acceptgdpr-text {
+  text-align: center;
+  width: 80%;
+  color: #fff;
+  background-color: rgba(0,0,0,0.7);
+  padding: 2rem;
+}
+
+.frame-type-youtubegdprembed_youtube .video-container.youtube {
+  position: relative;
+  height: 0;
+  margin-bottom: 2rem;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000;
+}
+
+.frame-type-youtubegdprembed_youtube .video-container.youtube.ratio16to9 {
+  padding-bottom: 56.25%; /* 16:9 */
+}
+
+.frame-type-youtubegdprembed_youtube .video-container.youtube iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.frame-type-youtubegdprembed_youtube .hytPlayerWrap {
+  display: inline-block;
+}
+
+.frame-type-youtubegdprembed_youtube .hytPlayerWrap.ended::after {
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 64px 64px;
+  background-image: url(data:image/svg+xml;utf8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgNTEwIDUxMCI+PHBhdGggZD0iTTI1NSAxMDJWMEwxMjcuNSAxMjcuNSAyNTUgMjU1VjE1M2M4NC4xNSAwIDE1MyA2OC44NSAxNTMgMTUzcy02OC44NSAxNTMtMTUzIDE1My0xNTMtNjguODUtMTUzLTE1M0g1MWMwIDExMi4yIDkxLjggMjA0IDIwNCAyMDRzMjA0LTkxLjggMjA0LTIwNC05MS44LTIwNC0yMDQtMjA0eiIgZmlsbD0iI0ZGRiIvPjwvc3ZnPg==);
+}
+
+.frame-type-youtubegdprembed_youtube .hytPlayerWrap.paused::after {
+  content:"";
+  position: absolute;
+  top: 70px;
+  left: 0;
+  bottom: 50px;
+  right: 0;
+  cursor: pointer;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px 40px;
+  background-image: url(data:image/svg+xml;utf8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHdpZHRoPSIxNzA2LjY2NyIgaGVpZ2h0PSIxNzA2LjY2NyIgdmlld0JveD0iMCAwIDEyODAgMTI4MCI+PHBhdGggZD0iTTE1Ny42MzUgMi45ODRMMTI2MC45NzkgNjQwIDE1Ny42MzUgMTI3Ny4wMTZ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+);
+}

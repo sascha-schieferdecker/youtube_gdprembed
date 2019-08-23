@@ -1,9 +1,23 @@
+plugin.tx_youtubegdprembed {
+    settings {
+        # ID of page with privacy information
+        privacyPage = {$plugin.tx_youtubegdprembed.settings.privacyPage}
+
+        # Set a cookie that user has accepted information about youtube
+        persistAcceptance = {$plugin.tx_youtubegdprembed.settings.persistAcceptance}
+
+        # Storage and folder for storing the downloaded preview images
+        storagePreviewImages = {$plugin.tx_youtubegdprembed.settings.storagePreviewImages}
+    }
+}
+
+# Define Output template
 tt_content {
     youtubegdprembed_youtube =< lib.contentElement
     youtubegdprembed_youtube {
         templateName = Youtube.html
         templateRootPaths {
-            198 = EXT:youtube_gdprembed/Resources/Private/Templates/
+            198 = {$plugin.tx_youtubegdprembed.settings.templateRootPath}
         }
         dataProcessing {
             1 = SaschaSchieferdecker\YoutubeGdprembed\DataProcessing\YoutubeProcessor
@@ -11,4 +25,10 @@ tt_content {
     }
 }
 
+page.includeCSSLibs {
+    youtubegdprembed = {$plugin.tx_youtubegdprembed.settings.cssFile}
+}
+page.includeJSFooterlibs {
+    youtubegdprembed = {$plugin.tx_youtubegdprembed.settings.jsFile}
+}
 

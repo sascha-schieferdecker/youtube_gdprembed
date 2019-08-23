@@ -15,6 +15,9 @@
             <trans-unit id="tt_content.youtubegdpr_norel" xml:space="preserve">
 				<source>Do not show any related videos after video ends</source>
 			</trans-unit>
+            <trans-unit id="frontend.youtubegdpr_norel" xml:space="preserve">
+				<source>Do not show any related videos after video ends</source>
+			</trans-unit>
         </body>
     </file>
 </xliff>
