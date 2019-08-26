@@ -13,14 +13,16 @@
 
 .frame-type-youtubegdprembed_youtube .acceptgdpr .btn {
   margin-top: 1rem;
+  display: inline-block;
 }
 
 .frame-type-youtubegdprembed_youtube .acceptgdpr .acceptgdpr-text {
   text-align: center;
   width: 80%;
-  color: #fff;
-  background-color: rgba(0,0,0,0.7);
+  color: #000;
+  background-color: rgba(255,255,255,0.9);
   padding: 2rem;
+  /*box-shadow: 0px 0px 10px 7px rgba(255,255,255,0.5);*/
 }
 
 .frame-type-youtubegdprembed_youtube .video-container.youtube {

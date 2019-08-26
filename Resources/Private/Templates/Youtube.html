@@ -7,8 +7,10 @@
                 <div class="acceptgdpr" id="acceptgdpr{data.uid}">
                     <div class="acceptgdpr-text">
                         Mit dem Aufruf des Videos erklären Sie sich einverstanden, dass Ihre Daten an YouTube übermittelt werden und das Sie die <a href="https://www.inotec-licht.de/metanavigation-oben/datenschutz/" target="_blank">Datenschutzerklärung</a> gelesen haben.
+                        <br>
+                        <button id="acceptgdpr-btn{data.uid}"class="btn btn-primary btn-center">Akzeptieren</button>
                     </div>
-                    <input id="acceptgdpr-btn{data.uid}" type="button" class="btn" value="Akzeptieren" />
+
                 </div>
                 <!--<iframe id="gdpriframe{data.uid}" allowfullscreen
                         width="640" height="360"
@@ -22,7 +24,7 @@
     <script>
         window.addEventListener("load", function(event) {
             document.querySelector('#acceptgdpr-btn' + <f:format.raw>{data.uid}</f:format.raw>).addEventListener("click", function () {
-                youtubegdpr(<f:format.raw>{data.uid}</f:format.raw>, false);
+                youtubegdpr(<f:format.raw>{data.uid}</f:format.raw>, '<f:format.raw>{data.youtubegdpr_norel}</f:format.raw>', false);
             });
         });
     </script>
