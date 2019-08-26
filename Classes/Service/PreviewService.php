@@ -39,20 +39,35 @@ class PreviewService implements SingletonInterface
      */
     public function getData($contentID, $youtubeID) {
 
+        $databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tt_content');
+        $where = ['uid' => (int) $contentID];
+
         $metaData = $this->getMeta($youtubeID);
         if ($metaData !== false) {
             if (is_string($metaData->thumbnail_url) && strlen($metaData->thumbnail_url) > 0) {
                 $file = $this->savePreviewImage($metaData->thumbnail_url, $youtubeID);
             }
-            $databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getConnectionForTable('tt_content');
+
             $data = [
                 'youtubegdpr_previewimage' => $file->getUid(),
                 'youtubegdpr_width' => $metaData->width,
                 'youtubegdpr_height' => $metaData->height
             ];
-            $where = ['uid' => (int) $contentID];
+
             $databaseConnection->update('tt_content', $data, $where);
+        }
+        else {
+            // try to save image at least
+            $url = 'https://img.youtube.com/vi/' . $youtubeID . '/0.jpg';
+            $file = $this->savePreviewImage($url, $youtubeID);
+            if ($file !== false) {
+                $data = [
+                    'youtubegdpr_previewimage' => $file->getUid(),
+                ];
+
+                $databaseConnection->update('tt_content', $data, $where);
+            }
         }
 
         return [
@@ -69,9 +84,13 @@ class PreviewService implements SingletonInterface
      */
     private function getMeta($youtubeID) {
 
+        $url = 'https://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3D' . preg_replace("/[^a-zA-Z0-9]+/", "", $youtubeID) . '&format=json';
+
+
         $result = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL(
-            'https://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3D' . preg_replace("/[^a-zA-Z0-9]+/", "", $youtubeID) . '&format=json'
+            $url
         );
+        DebuggerUtility::var_dump($result);
         if ($result !== false) {
             $json = \json_decode($result);
             if (is_object($json)) {
