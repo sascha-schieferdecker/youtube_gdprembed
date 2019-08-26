@@ -15,8 +15,14 @@
             <trans-unit id="tt_content.youtubegdpr_norel" xml:space="preserve">
 				<source>Do not show any related videos after video ends</source>
 			</trans-unit>
-            <trans-unit id="frontend.youtubegdpr_norel" xml:space="preserve">
-				<source>Do not show any related videos after video ends</source>
+            <trans-unit id="frontend.privacy.text" xml:space="preserve">
+				<source>By viewing this video you agree to loading content from youtube. Please see our %s for details.</source>
+			</trans-unit>
+            <trans-unit id="frontend.privacy.linktext" xml:space="preserve">
+				<source>privacy policy</source>
+			</trans-unit>
+            <trans-unit id="frontend.privacy.button" xml:space="preserve">
+				<source>Accept</source>
 			</trans-unit>
         </body>
     </file>

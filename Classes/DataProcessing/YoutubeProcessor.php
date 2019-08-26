@@ -59,6 +59,7 @@ class YoutubeProcessor implements DataProcessorInterface
         // Check if a cookie has to be set on first acceptance of terms
         $config = $previewService->getTypoScriptSettings();
         $processedData['data']['youtubegdpr_persistacceptance'] = (int) $config['persistAcceptance'];
+        $processedData['data']['youtubegdpr_privacyPage'] = (int) $config['privacyPage'];
 
         return $processedData;
     }

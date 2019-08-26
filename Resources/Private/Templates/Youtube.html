@@ -6,9 +6,13 @@
             <div class="hytPlayerWrap">
                 <div class="acceptgdpr" id="acceptgdpr{data.uid}">
                     <div class="acceptgdpr-text">
-                        Mit dem Aufruf des Videos erklären Sie sich einverstanden, dass Ihre Daten an YouTube übermittelt werden und das Sie die <a href="https://www.inotec-licht.de/metanavigation-oben/datenschutz/" target="_blank">Datenschutzerklärung</a> gelesen haben.
+                        <f:format.raw><f:translate key="LLL:EXT:youtube_gdprembed/Resources/Private/Language/locallang.xlf:frontend.privacy.text"
+                                     arguments="{0: '<a href=\"{f:uri.page(pageUid: \'{data.youtubegdpr_privacyPage}\')}\" target=\"_blank\">{f:translate(key: \'LLL:EXT:youtube_gdprembed/Resources/Private/Language/locallang.xlf:frontend.privacy.linktext\')}</a>'}" />
+                        </f:format.raw>
                         <br>
-                        <button id="acceptgdpr-btn{data.uid}"class="btn btn-primary btn-center">Akzeptieren</button>
+                        <button id="acceptgdpr-btn{data.uid}"class="btn btn-primary btn-center">
+                            <f:translate key="LLL:EXT:youtube_gdprembed/Resources/Private/Language/locallang.xlf:frontend.privacy.button"/>
+                        </button>
                     </div>
 
                 </div>
