@@ -12,7 +12,25 @@ class PreviewService implements SingletonInterface
      * @var \TYPO3\CMS\Core\Resource\ResourceFactory
      */
     private $resourceFactory;
-    private $typoScriptSettings;
+    protected $typoScriptSettings;
+
+    /**
+     * @return mixed
+     */
+    public function getTypoScriptSettings()
+    {
+        return $this->typoScriptSettings;
+    }
+
+    /**
+     * @param mixed $typoScriptSettings
+     */
+    public function setTypoScriptSettings($typoScriptSettings)
+    {
+        $this->typoScriptSettings = $typoScriptSettings;
+    }
+
+
 
     public function __construct()
     {

@@ -22,10 +22,15 @@
         </div>
     </div>
     <script>
-        window.addEventListener("load", function(event) {
-            document.querySelector('#acceptgdpr-btn' + <f:format.raw>{data.uid}</f:format.raw>).addEventListener("click", function () {
-                youtubegdpr(<f:format.raw>{data.uid}</f:format.raw>, '<f:format.raw>{data.youtubegdpr_norel}</f:format.raw>', false);
-            });
+        document.addEventListener("DOMContentLoaded", function(event) {
+            if (document.cookie.indexOf("youtubegdpr=") >= 0) {
+                youtubegdpr(<f:format.raw>{data.uid}</f:format.raw>, '<f:format.raw>{data.youtubegdpr_norel}</f:format.raw>', <f:format.raw>{data.youtubegdpr_persistacceptance}</f:format.raw>);
+            }
+            else {
+                document.querySelector('#acceptgdpr-btn' + <f:format.raw>{data.uid}</f:format.raw>).addEventListener("click", function () {
+                    youtubegdpr(<f:format.raw>{data.uid}</f:format.raw>, '<f:format.raw>{data.youtubegdpr_norel}</f:format.raw>', <f:format.raw>{data.youtubegdpr_persistacceptance}</f:format.raw>);
+                });
+            }
         });
     </script>
 </f:section>

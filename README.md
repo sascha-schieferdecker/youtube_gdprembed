@@ -79,12 +79,12 @@ Until October 2018 you could hide related videos by setting a "rel=0" paramater 
 
 This does no longer work as before. Related videos from your own channel are still shown. 
 
-So this extension makes use of the workaround described by [Maximilian Laumeister] to hide these related videos by using another Youtube API, if the corresponding option is set.
+So this extension makes use of the rather hacky workaround described by [Maximilian Laumeister] to hide these related videos by creating some CSS overlays, if the corresponding option is set. My JS is nicer though ;) Did I mention IE11 sucks?
 
 
 ## Contributions
 
-...
+Contributions are very welcome, feel free to create a pull request.
 
 [TER]: https://extensions.typo3.org
 [Maximilian Laumeister]: https://www.maxlaumeister.com/blog/hide-related-videos-in-youtube-embeds/

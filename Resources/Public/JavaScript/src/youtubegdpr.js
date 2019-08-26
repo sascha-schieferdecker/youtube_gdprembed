@@ -13,6 +13,12 @@ export default function youtubegdpr(contentId, hideRel, setCookie) {
         elem.style.display = 'none';
     })
 
+    if(Number(setCookie) > 0) {
+        var date = new Date();
+        date.setTime(date.getTime()+(365*24*60*60*1000));
+        document.cookie = "youtubegdpr=accepted; expires= " + date.toGMTString() + "; path=/ "
+    }
+
     if (window.youtubegdprExecuted != true) {
         var tag = document.createElement('script');
 
@@ -22,9 +28,9 @@ export default function youtubegdpr(contentId, hideRel, setCookie) {
 
         window.onYouTubeIframeAPIReady = function() {
             var playerDivs = document.querySelectorAll('.gdprplayer')
-            var playerDivsArr = [].slice.call(playerDivs); // nodelist to array to use forEach();
+            var playerDivsArr = [].slice.call(playerDivs);
             var players = new Array(playerDivsArr.length);
-            playerDivsArr.forEach(function (e, i) { // forEach ...
+            playerDivsArr.forEach(function (e, i) {
                 players[i] = new YT.Player(e.id, {
                     videoId: e.getAttribute('data-video'),
                     events: {

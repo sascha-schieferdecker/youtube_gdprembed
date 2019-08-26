@@ -8,6 +8,9 @@ plugin.tx_youtubegdprembed {
 
         # Storage and folder for storing the downloaded preview images
         storagePreviewImages = {$plugin.tx_youtubegdprembed.settings.storagePreviewImages}
+
+        # Set a cookie that user has accepted information about youtube
+        persistAcceptance = {$plugin.tx_youtubegdprembed.settings.persistAcceptance}
     }
 }
 
