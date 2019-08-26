@@ -10,18 +10,19 @@
                     </div>
                     <input id="acceptgdpr-btn{data.uid}" type="button" class="btn" value="Akzeptieren" />
                 </div>
-                <iframe id="gdpriframe{data.uid}" allowfullscreen
+                <!--<iframe id="gdpriframe{data.uid}" allowfullscreen
                         width="640" height="360"
                         data-src="https://www.youtube-nocookie.com/embed/{data.youtubegdpr}?rel=0&enablejsapi=1"
                         frameborder="0"
-                ></iframe>
+                ></iframe>-->
+                <div id="gdprplayer{data.uid}" class="gdprplayer" data-video="{data.youtubegdpr}"></div>
             </div>
         </div>
     </div>
     <script>
         window.addEventListener("load", function(event) {
             document.querySelector('#acceptgdpr-btn' + <f:format.raw>{data.uid}</f:format.raw>).addEventListener("click", function () {
-                youtubegdpr(<f:format.raw>{data.uid}</f:format.raw>, '16-9', false);
+                youtubegdpr(<f:format.raw>{data.uid}</f:format.raw>, false);
             });
         });
     </script>

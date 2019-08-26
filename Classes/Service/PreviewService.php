@@ -90,7 +90,6 @@ class PreviewService implements SingletonInterface
         $result = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL(
             $url
         );
-        DebuggerUtility::var_dump($result);
         if ($result !== false) {
             $json = \json_decode($result);
             if (is_object($json)) {

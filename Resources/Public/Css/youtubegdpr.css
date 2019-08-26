@@ -37,7 +37,7 @@
   padding-bottom: 56.25%; /* 16:9 */
 }
 
-.frame-type-youtubegdprembed_youtube .video-container.youtube iframe {
+.frame-type-youtubegdprembed_youtube .video-container.youtube iframe, .frame-type-youtubegdprembed_youtube .video-container.youtube .gdprplayer {
   position: absolute;
   top: 0;
   left: 0;
