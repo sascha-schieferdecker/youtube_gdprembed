@@ -50,16 +50,12 @@ class YoutubeProcessor implements DataProcessorInterface
             $processedData['data']['youtubegdpr_height'] = $ytdata['height'];
             $processedData['data']['youtubegdpr_previewimage'] = $ytdata['file'];
         }
-        DebuggerUtility::var_dump([
-            $processedData['data']['youtubegdpr'],
-            $processedData['data']['youtubegdpr_norel'],
-            $processedData['data']['youtubegdpr_width'],
-            $processedData['data']['youtubegdpr_height'],
-            $processedData['data']['youtubegdpr_previewimage'],
-        ]);
+        else {
+            // Transform File ID to file Object
+            $resourceFactory = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
+            $processedData['data']['youtubegdpr_previewimage'] = $resourceFactory->getFileObject($processedData['data']['youtubegdpr_previewimage']);
+        }
 
-
-        $processedData['foo'] = 'This variable will be passed to Fluid';
 
         return $processedData;
     }

@@ -57,7 +57,7 @@
   bottom: 0;
   right: 0;
   cursor: pointer;
-  background-color: black;
+  background-color: rgba(0,0,0,0.9);;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 64px 64px;
@@ -72,7 +72,7 @@
   bottom: 50px;
   right: 0;
   cursor: pointer;
-  background-color: black;
+  background-color: rgba(0,0,0,0.9);;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40px 40px;

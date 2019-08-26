@@ -4,6 +4,7 @@ namespace SaschaSchieferdecker\YoutubeGdprembed\Service;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 class PreviewService implements SingletonInterface
 {
@@ -43,9 +44,17 @@ class PreviewService implements SingletonInterface
             if (is_string($metaData->thumbnail_url) && strlen($metaData->thumbnail_url) > 0) {
                 $file = $this->savePreviewImage($metaData->thumbnail_url, $youtubeID);
             }
-            /*DebuggerUtility::var_dump($metaData->width);
-            DebuggerUtility::var_dump($metaData->height);*/
+            $databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getConnectionForTable('tt_content');
+            $data = [
+                'youtubegdpr_previewimage' => $file->getUid(),
+                'youtubegdpr_width' => $metaData->width,
+                'youtubegdpr_height' => $metaData->height
+            ];
+            $where = ['uid' => (int) $contentID];
+            $databaseConnection->update('tt_content', $data, $where);
         }
+
         return [
             'file' => $file,
             'width' => $metaData->width,
