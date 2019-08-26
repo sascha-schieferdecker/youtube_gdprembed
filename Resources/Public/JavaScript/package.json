@@ -1,0 +1,25 @@
+{
+  "name": "youtubegdpr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "youtubegdpr.js",
+  "keywords": [],
+  "author": "Sascha Schieferdecker",
+  "license": "GPL 2.0",
+  "scripts": {
+    "clean": "rm ../dist/bundle.js",
+    "build-dev": "webpack -d --mode development",
+    "build-prod": "webpack -p --mode production"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-typeof-symbol": "^7.2.0",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "core-js": "^3.2.1",
+    "regenerator-runtime": "^0.13.3",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7"
+  }
+}

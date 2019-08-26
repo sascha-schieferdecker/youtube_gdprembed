@@ -13,7 +13,7 @@ plugin.tx_youtubegdprembed {
         cssFile = EXT:youtube_gdprembed/Resources/Public/Css/youtubegdpr.css
 
         # cat=plugin.tx_youtubegdprembed; type=string; label=Storage and folder for storing the downloaded preview images
-        jsFile = EXT:youtube_gdprembed/Resources/Public/JavaScript/youtubegdpr.js
+        jsFile = EXT:youtube_gdprembed/Resources/Public/JavaScript/dist/youtubegdpr.js
 
         # cat=plugin.tx_youtubegdprembed; type=string; label=Storage and folder for storing the downloaded preview images
         storagePreviewImages = 0:fileadmin/youtube-preview-images
