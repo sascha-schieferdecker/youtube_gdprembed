@@ -10,7 +10,7 @@ $EM_CONF['youtube_gdprembed'] = array(
     'uploadfolder' => '0',
     'createDirs' => '',
     'clearCacheOnLoad' => 1,
-    'version' => '0.5.0',
+    'version' => '0.9.0',
     'constraints' => array(
         'depends' =>
             [
