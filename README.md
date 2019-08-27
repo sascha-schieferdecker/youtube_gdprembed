@@ -79,7 +79,7 @@ Until October 2018 you could hide related videos by setting a "rel=0" paramater 
 
 This does no longer work as before. Related videos from your own channel are still shown. 
 
-So this extension makes use of the rather hacky workaround described by [Maximilian Laumeister] to hide these related videos by creating some CSS overlays, if the corresponding option is set. My JS is nicer though ;) Did I mention IE11 sucks?
+So this extension makes use of the rather hacky workaround described by [Maximilian Laumeister] to hide these related videos by creating some CSS overlays, if the corresponding option is set. Did I mention IE11 sucks?
 
 
 ## Contributions

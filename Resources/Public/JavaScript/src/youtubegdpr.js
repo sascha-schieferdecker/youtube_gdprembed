@@ -7,7 +7,7 @@ import "regenerator-runtime"
  * @param {string} hideRel
  * @param {boolean} setCookie
  */
-export default function youtubegdpr(contentId, hideRel, setCookie) {
+export default function youtubegdpr(contentId, setCookie) {
 
     document.querySelectorAll('.acceptgdpr').forEach(elem => {
         elem.style.display = 'none';
@@ -31,13 +31,14 @@ export default function youtubegdpr(contentId, hideRel, setCookie) {
             var playerDivsArr = [].slice.call(playerDivs);
             var players = new Array(playerDivsArr.length);
             playerDivsArr.forEach(function (e, i) {
-                players[i] = new YT.Player(e.id, {
-                    videoId: e.getAttribute('data-video'),
-                    events: {
-                        'onStateChange': onPlayerStateChange
-                    }
-                })
-                if (Number(hideRel) > 0) {
+                let hideRel = Number(e.getAttribute('data-hiderel'));
+                if (hideRel > 0) {
+                    players[i] = new YT.Player(e.id, {
+                        videoId: e.getAttribute('data-video'),
+                        events: {
+                            'onStateChange': onPlayerStateChange
+                        }
+                    })
                     let elem = document.getElementById(e.id);
                     elem.parentNode.parentNode.addEventListener("click", function() {
                         let playerState = players[i].getPlayerState();
@@ -47,6 +48,11 @@ export default function youtubegdpr(contentId, hideRel, setCookie) {
                             players[i].playVideo();
                         }
                     });
+                }
+                else {
+                    players[i] = new YT.Player(e.id, {
+                        videoId: e.getAttribute('data-video')
+                    })
                 }
             })
         }
@@ -60,15 +66,13 @@ export default function youtubegdpr(contentId, hideRel, setCookie) {
     }
 
     let onPlayerStateChange = function(event) {
-        if (Number(hideRel) > 0) {
-            if (event.data == YT.PlayerState.ENDED) {
-                event.target.a.parentNode.classList.add("ended");
-            } else if (event.data == YT.PlayerState.PAUSED) {
-                event.target.a.parentNode.classList.add("paused");
-            } else if (event.data == YT.PlayerState.PLAYING) {
-                event.target.a.parentNode.classList.remove("ended");
-                event.target.a.parentNode.classList.remove("paused");
-            }
+        if (event.data == YT.PlayerState.ENDED) {
+            event.target.a.parentNode.classList.add("ended");
+        } else if (event.data == YT.PlayerState.PAUSED) {
+            event.target.a.parentNode.classList.add("paused");
+        } else if (event.data == YT.PlayerState.PLAYING) {
+            event.target.a.parentNode.classList.remove("ended");
+            event.target.a.parentNode.classList.remove("paused");
         }
     };
 

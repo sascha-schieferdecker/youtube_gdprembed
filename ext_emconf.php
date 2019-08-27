@@ -5,12 +5,12 @@ $EM_CONF['youtube_gdprembed'] = array(
     'category' => 'plugin',
     'author' => 'Sascha Schieferdecker',
     'author_email' => 'typo3@sascha-schieferdecker.de',
-    'state' => 'alpha',
+    'state' => 'beta',
     'internal' => '',
     'uploadfolder' => '0',
     'createDirs' => '',
     'clearCacheOnLoad' => 1,
-    'version' => '0.1.0',
+    'version' => '0.5.0',
     'constraints' => array(
         'depends' =>
             [

@@ -14,7 +14,6 @@ namespace SaschaSchieferdecker\YoutubeGdprembed\DataProcessing;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use SaschaSchieferdecker\YoutubeGdprembed\Service\PreviewService;

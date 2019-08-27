@@ -16,7 +16,7 @@
                     </div>
 
                 </div>
-                <div id="gdprplayer{data.uid}" class="gdprplayer" data-video="{data.youtubegdpr}"></div>
+                <div id="gdprplayer{data.uid}" class="gdprplayer" data-video="{data.youtubegdpr}" data-hiderel="{data.youtubegdpr_norel}"></div>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
             }
             else {
                 document.querySelector('#acceptgdpr-btn' + <f:format.raw>{data.uid}</f:format.raw>).addEventListener("click", function () {
-                    youtubegdpr(<f:format.raw>{data.uid}</f:format.raw>, '<f:format.raw>{data.youtubegdpr_norel}</f:format.raw>', <f:format.raw>{data.youtubegdpr_persistacceptance}</f:format.raw>);
+                    youtubegdpr(<f:format.raw>{data.uid}</f:format.raw>,  <f:format.raw>{data.youtubegdpr_persistacceptance}</f:format.raw>);
                 });
             }
         });
