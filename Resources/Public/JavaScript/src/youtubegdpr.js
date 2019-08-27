@@ -37,6 +37,11 @@ export default function youtubegdpr(contentId, setCookie) {
                         videoId: e.getAttribute('data-video'),
                         events: {
                             'onStateChange': onPlayerStateChange
+                        },
+                        playerVars: {
+                            modestbranding: 1,
+                            rel: 0,
+                            showinfo: 0
                         }
                     })
                     let elem = document.getElementById(e.id);
@@ -51,7 +56,12 @@ export default function youtubegdpr(contentId, setCookie) {
                 }
                 else {
                     players[i] = new YT.Player(e.id, {
-                        videoId: e.getAttribute('data-video')
+                        videoId: e.getAttribute('data-video'),
+                        playerVars: {
+                            modestbranding: 1,
+                            rel: 0,
+                            showinfo: 0
+                        }
                     })
                 }
             })
