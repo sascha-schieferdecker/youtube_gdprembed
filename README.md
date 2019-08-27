@@ -87,6 +87,9 @@ This does no longer work as before. Related videos from your own channel are sti
 
 So this extension makes use of the rather hacky workaround described by [Maximilian Laumeister] to hide these related videos by creating some CSS overlays, if the corresponding option is set. Did I mention IE11 sucks?
 
+## Known problems and limitations
+
+IE11 does not show the overlay icons when hiding related videos, but the usual youtube controls are still accessible.
 
 ## Contributions
 
