@@ -22,6 +22,12 @@ The existing extensions are either not available for TYPO3 v9 or do not fit my u
 
 * Supports Chrome, Firefox, IE11 and main mobile browsers
 
+## Screenshots
+
+![Overlay](Documentation/Images/overlay.png "Overlay text")
+
+![Difference related videos](Documentation/Images/hide_related.png "Difference related videos")
+
 ## Installation
 
 ``
