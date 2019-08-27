@@ -1,7 +1,7 @@
 {
   "name": "saschaschieferdecker/youtube_gdprembed",
   "type": "typo3-cms-extension",
-  "description": "Creates a new content type that embeds after click. Preferences can be saved in cookie. No dependency to JS frameworks.",
+  "description": "Creates a new content type that embeds youtube videos after click. Preferences can be saved in cookie. No dependency to JS frameworks.",
   "keywords": [
     "TYPO3",
     "extension",
