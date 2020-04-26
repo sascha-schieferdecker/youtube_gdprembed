@@ -42,7 +42,8 @@ class YoutubeProcessor implements DataProcessorInterface
     {
         //DebuggerUtility::var_dump($processedData['data']['youtubegdpr']);
         $previewService = new PreviewService();
-
+        // $cObj->data["tstamp"]
+        //
         if ($processedData['data']['youtubegdpr_width'] === 0 && $processedData['data']['youtubegdpr_height'] === 0) {
             $ytdata = $previewService->getData($processedData['data']['uid'], $processedData['data']['youtubegdpr']);
             $processedData['data']['youtubegdpr_width'] = $ytdata['width'];
@@ -50,9 +51,20 @@ class YoutubeProcessor implements DataProcessorInterface
             $processedData['data']['youtubegdpr_previewimage'] = $ytdata['file'];
         }
         else {
-            // Transform File ID to file Object
-            $resourceFactory = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
-            $processedData['data']['youtubegdpr_previewimage'] = $resourceFactory->getFileObject($processedData['data']['youtubegdpr_previewimage']);
+
+
+            try {
+                // Transform File ID to file Object
+                $resourceFactory = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
+                $processedData['data']['youtubegdpr_previewimage'] = $resourceFactory->getFileObject($processedData['data']['youtubegdpr_previewimage']);
+            }
+            catch (\Exception $e) {
+                $ytdata = $previewService->getData($processedData['data']['uid'], $processedData['data']['youtubegdpr']);
+                $processedData['data']['youtubegdpr_width'] = $ytdata['width'];
+                $processedData['data']['youtubegdpr_height'] = $ytdata['height'];
+                $processedData['data']['youtubegdpr_previewimage'] = $ytdata['file'];
+
+            }
         }
 
         // Check if a cookie has to be set on first acceptance of terms

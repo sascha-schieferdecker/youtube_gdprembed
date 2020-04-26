@@ -153,7 +153,13 @@ class PreviewService implements SingletonInterface
         }
         catch (\Exception $e) {
             if (is_a($e, 'InvalidArgumentException')) {
-                $previewImage = GeneralUtility::getUrl($url);
+                // we prefer the high res image
+                $urlHQ = preg_replace("/hqdefault/", "maxresdefault", $url);
+                $previewImage = GeneralUtility::getUrl($urlHQ);
+                // load low res image as fallback
+                if ($previewImage === false) {
+                    $previewImage = GeneralUtility::getUrl($url);
+                }
                 if ($previewImage !== false) {
                     $tempfile = GeneralUtility::tempnam('yoututegdpr_');
                     GeneralUtility::writeFile($tempfile, $previewImage);
