@@ -1,7 +1,14 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 <f:section name="Main">
-    <div class="video-container youtube ratio16to9" id="video-container{data.uid}" style="background-image: url('{f:uri.image(image: data.youtubegdpr_previewimage)}')">
+    <f:if condition="{data.youtubegdpr_previewimage}">
+        <f:then>
+            <div class="video-container youtube ratio16to9" id="video-container{data.uid}" style="background-image: url('{f:uri.image(image: data.youtubegdpr_previewimage)}')">
+        </f:then>
+        <f:else>
+            <div class="video-container youtube ratio16to9" id="video-container{data.uid}">
+        </f:else>
+    </f:if>
         <div class="hytPlayerWrapOuter">
             <div class="hytPlayerWrap">
                 <div class="acceptgdpr" id="acceptgdpr{data.uid}">
