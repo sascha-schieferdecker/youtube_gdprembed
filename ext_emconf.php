@@ -14,7 +14,7 @@ $EM_CONF['youtube_gdprembed'] = array(
     'constraints' => array(
         'depends' =>
             [
-                'typo3' => '9.5.00-10.4.99',
+                'typo3' => '9.5.00-11.5.99',
             ],
         'conflicts' => [
 
