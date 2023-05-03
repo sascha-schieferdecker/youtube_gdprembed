@@ -14,6 +14,8 @@ namespace SaschaSchieferdecker\YoutubeGdprembed\DataProcessing;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use SaschaSchieferdecker\YoutubeGdprembed\Service\PreviewService;
@@ -23,6 +25,7 @@ use SaschaSchieferdecker\YoutubeGdprembed\Service\PreviewService;
  */
 class YoutubeProcessor implements DataProcessorInterface
 {
+    private $resourceFactory = null;
 
     /**
      * Process data for the content element "My new content element"
@@ -40,6 +43,8 @@ class YoutubeProcessor implements DataProcessorInterface
         array $processedData
     )
     {
+        $this->resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+
         //DebuggerUtility::var_dump($processedData['data']['youtubegdpr']);
         $previewService = new PreviewService();
 
@@ -51,8 +56,7 @@ class YoutubeProcessor implements DataProcessorInterface
         }
         else {
             // Transform File ID to file Object
-            $resourceFactory = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
-            $processedData['data']['youtubegdpr_previewimage'] = $resourceFactory->getFileObject($processedData['data']['youtubegdpr_previewimage']);
+            $processedData['data']['youtubegdpr_previewimage'] = $this->resourceFactory->getFileObject($processedData['data']['youtubegdpr_previewimage']);
         }
 
         // Check if a cookie has to be set on first acceptance of terms

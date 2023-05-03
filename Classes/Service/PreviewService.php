@@ -1,6 +1,7 @@
 <?php
 namespace SaschaSchieferdecker\YoutubeGdprembed\Service;
 
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -47,7 +48,7 @@ class PreviewService implements SingletonInterface
     public function __construct()
     {
         $this->loadConfiguration();
-        $this->resourceFactory = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
+        $this->resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
     }
 
     /**
