@@ -14,6 +14,8 @@ namespace SaschaSchieferdecker\YoutubeGdprembed\DataProcessing;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use SaschaSchieferdecker\YoutubeGdprembed\Service\PreviewService;
@@ -23,6 +25,7 @@ use SaschaSchieferdecker\YoutubeGdprembed\Service\PreviewService;
  */
 class YoutubeProcessor implements DataProcessorInterface
 {
+    private $resourceFactory = null;
 
     /**
      * Process data for the content element "My new content element"
@@ -40,10 +43,11 @@ class YoutubeProcessor implements DataProcessorInterface
         array $processedData
     )
     {
+        $this->resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+
         //DebuggerUtility::var_dump($processedData['data']['youtubegdpr']);
         $previewService = new PreviewService();
-        // $cObj->data["tstamp"]
-        //
+
         if ($processedData['data']['youtubegdpr_width'] === 0 && $processedData['data']['youtubegdpr_height'] === 0) {
             $ytdata = $previewService->getData($processedData['data']['uid'], $processedData['data']['youtubegdpr']);
             $processedData['data']['youtubegdpr_width'] = $ytdata['width'];
@@ -51,20 +55,8 @@ class YoutubeProcessor implements DataProcessorInterface
             $processedData['data']['youtubegdpr_previewimage'] = $ytdata['file'];
         }
         else {
-
-
-            try {
-                // Transform File ID to file Object
-                $resourceFactory = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
-                $processedData['data']['youtubegdpr_previewimage'] = $resourceFactory->getFileObject($processedData['data']['youtubegdpr_previewimage']);
-            }
-            catch (\Exception $e) {
-                $ytdata = $previewService->getData($processedData['data']['uid'], $processedData['data']['youtubegdpr']);
-                $processedData['data']['youtubegdpr_width'] = $ytdata['width'];
-                $processedData['data']['youtubegdpr_height'] = $ytdata['height'];
-                $processedData['data']['youtubegdpr_previewimage'] = $ytdata['file'];
-
-            }
+            // Transform File ID to file Object
+            $processedData['data']['youtubegdpr_previewimage'] = $this->resourceFactory->getFileObject($processedData['data']['youtubegdpr_previewimage']);
         }
 
         // Check if a cookie has to be set on first acceptance of terms
