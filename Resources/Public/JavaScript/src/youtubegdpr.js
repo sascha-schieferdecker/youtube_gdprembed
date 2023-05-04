@@ -77,12 +77,12 @@ export default function youtubegdpr(contentId, setCookie) {
 
     let onPlayerStateChange = function(event) {
         if (event.data == YT.PlayerState.ENDED) {
-            event.target.a.parentNode.classList.add("ended");
+            event.target.g.parentNode.classList.add("ended");
         } else if (event.data == YT.PlayerState.PAUSED) {
-            event.target.a.parentNode.classList.add("paused");
+            event.target.g.parentNode.classList.add("paused");
         } else if (event.data == YT.PlayerState.PLAYING) {
-            event.target.a.parentNode.classList.remove("ended");
-            event.target.a.parentNode.classList.remove("paused");
+            event.target.g.parentNode.classList.remove("ended");
+            event.target.g.parentNode.classList.remove("paused");
         }
     };
 

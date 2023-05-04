@@ -30,9 +30,12 @@ $temporaryColumns = array (
         'label' => 'LLL:EXT:youtube_gdprembed/Resources/Private/Language/locallang.xlf:tt_content.youtubegdpr_norel',
         'config' => [
             'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'default' => 0,
             'items' => [
-                '1' => [
-                    '0' => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled'
+                [
+                    0 => '',
+                    1 => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled',
                 ]
             ],
         ],
