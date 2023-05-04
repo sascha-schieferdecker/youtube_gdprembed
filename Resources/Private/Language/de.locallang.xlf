@@ -21,7 +21,7 @@
 			</trans-unit>
             <trans-unit id="frontend.privacy.text" xml:space="preserve">
                 <source>By viewing this video you agree to loading content from youtube. Please see our %s for details.</source>
-				<target>Mit dem Aufruf des Videos erklären Sie sich einverstanden, dass Ihre Daten an YouTube übermittelt werden und das Sie die %s gelesen haben.</target>
+				<target>Mit dem Aufruf des Videos erklären Sie sich einverstanden, dass Ihre Daten an YouTube übermittelt werden und dass Sie die %s gelesen haben.</target>
 			</trans-unit>
             <trans-unit id="frontend.privacy.linktext" xml:space="preserve">
                 <source>privacy policy</source>
