@@ -29,7 +29,6 @@
     }
   },
   "replace": {
-    "saschaschieferdecker/youtube-gdprembed": "self.version",
     "typo3-ter/youtube-gdprembed": "self.version"
   },
   "extra": {
