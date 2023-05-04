@@ -19,9 +19,9 @@
     "issues": "https://github.com/sascha-schieferdecker/youtube_gdprembed/issues"
   },
   "require": {
-    "typo3/cms-core": ">=9.5.0,<11.5.99",
-    "typo3/cms-frontend": ">=9.5.0,<11.5.99",
-    "typo3/cms-fluid-styled-content": ">=9.5.0,<11.5.99"
+    "typo3/cms-core": ">=10.4.0,<11.5.99",
+    "typo3/cms-frontend": ">=10.4.0,<11.5.99",
+    "typo3/cms-fluid-styled-content": ">=10.4.0,<11.5.99"
   },
   "autoload": {
     "psr-4": {

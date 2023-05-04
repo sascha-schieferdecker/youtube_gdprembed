@@ -46,7 +46,7 @@ class YoutubeProcessor implements DataProcessorInterface
         $this->resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
 
         //DebuggerUtility::var_dump($processedData['data']['youtubegdpr']);
-        $previewService = new PreviewService();
+        $previewService = GeneralUtility::makeInstance(PreviewService::class);
 
         if ($processedData['data']['youtubegdpr_width'] === 0 && $processedData['data']['youtubegdpr_height'] === 0) {
             $ytdata = $previewService->getData($processedData['data']['uid'], $processedData['data']['youtubegdpr']);

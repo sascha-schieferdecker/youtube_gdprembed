@@ -5,6 +5,7 @@ use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -24,8 +25,13 @@ class PreviewService implements SingletonInterface
     /**
      * @var \TYPO3\CMS\Core\Resource\ResourceFactory
      */
-    private $resourceFactory;
-    protected $typoScriptSettings;
+    private $resourceFactory = null;
+    protected $typoScriptSettings = [];
+
+    /**
+     * @var ConfigurationManagerInterface
+     */
+    private $configurationManager = null;
 
     /**
      * @return mixed
@@ -43,21 +49,18 @@ class PreviewService implements SingletonInterface
         $this->typoScriptSettings = $typoScriptSettings;
     }
 
-
-
     public function __construct()
     {
-        $this->loadConfiguration();
         $this->resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+        $this->configurationManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
+        $this->loadConfiguration();
     }
 
     /**
      * Load setup
      */
     private function loadConfiguration() {
-        $objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-        $configurationManager = $objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface');
-        $this->typoScriptSettings = $configurationManager->getConfiguration(
+        $this->typoScriptSettings = $this->configurationManager->getConfiguration(
             \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
         )['plugin.']['tx_youtubegdprembed.']['settings.'];
     }
