@@ -16,6 +16,8 @@ namespace SaschaSchieferdecker\YoutubeGdprembed\Hooks\PageLayoutView;
 
 use \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use \TYPO3\CMS\Backend\View\PageLayoutView;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class YoutubePreviewRenderer implements PageLayoutViewDrawItemHookInterface
 {
@@ -37,7 +39,7 @@ class YoutubePreviewRenderer implements PageLayoutViewDrawItemHookInterface
             if ($row['CType'] === 'youtubegdprembed_youtube') {
                 $itemContent .= '<b>Video ID: ' . $row['youtubegdpr']  . '</b>';
                 if ((int) $row['youtubegdpr_previewimage'] > 0) {
-                    $resourceFactory = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
+                    $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
                     try {
                         $file = $resourceFactory->getFileObject($row['youtubegdpr_previewimage']);
                         $itemContent .= '<br><img src="' . $file->getPublicUrl(true).'" class="img-responsive" style="max-width: 200px">';
