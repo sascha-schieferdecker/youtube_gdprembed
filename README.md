@@ -2,7 +2,7 @@
 
 Extension for responsive embedding of youtube videos via javascript to comply with GDPR rules. 
 
-The existing extensions are either not available for TYPO3 v9 or do not fit my usecase.
+The existing extensions are either not available for TYPO3 v11 or do not fit my usecase.
 
 ## Features
 
