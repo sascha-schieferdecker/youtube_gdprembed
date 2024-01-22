@@ -103,11 +103,10 @@ class PreviewService implements SingletonInterface
                 $databaseConnection->update('tt_content', $data, $where);
             }
         }
-
         return [
             'file' => $file,
-            'width' => $metaData->width,
-            'height' => $metaData->height
+            'width' => $metaData->width ?? 0,
+            'height' => $metaData->height ?? 0
         ];
     }
 
@@ -121,7 +120,7 @@ class PreviewService implements SingletonInterface
         $url = 'https://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3D' . preg_replace("/[^a-zA-Z0-9]+/", "", $youtubeID) . '&format=json';
 
 
-        $result = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL(
+        $result = GeneralUtility::getURL(
             $url
         );
         if ($result !== false) {
@@ -157,7 +156,7 @@ class PreviewService implements SingletonInterface
         }
         catch (\Exception $e) {
             if (is_a($e, 'InvalidArgumentException')) {
-                // we prefer the high res image
+                // we prefer the highres image
                 $urlHQ = preg_replace("/hqdefault/", "maxresdefault", $url);
                 $previewImage = GeneralUtility::getUrl($urlHQ);
                 // load low res image as fallback
