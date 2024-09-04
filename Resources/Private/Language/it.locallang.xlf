@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="inotec_catalog">
+        <header/>
+        <body>
+            <trans-unit id="title" xml:space="preserve">
+                <source>Youtube GDPR compliant embed</source>
+				<target>Incorporazione di Youtube conforme al GDPR</target>
+			</trans-unit>
+            <trans-unit id="description" xml:space="preserve">
+                <source>User has to click before any content from youtube is loaded</source>
+				<target>L'utente deve fare clic prima che venga caricato qualsiasi contenuto da youtube</target>
+			</trans-unit>
+            <trans-unit id="tt_content.youtubegdpr" xml:space="preserve">
+				<source>ID of youtube video</source>
+                <target>ID del video youtube</target>
+			</trans-unit>
+            <trans-unit id="tt_content.youtubegdpr_norel" xml:space="preserve">
+				<source>Do not show any related videos after video ends</source>
+                <target>Non mostrare alcun video correlato dopo la fine del video</target>
+			</trans-unit>
+            <trans-unit id="frontend.privacy.text" xml:space="preserve">
+                <source>By viewing this video you agree to loading content from youtube. Please see our %s for details.</source>
+				<target>Visualizzando questo video si accetta il caricamento di contenuti da youtube. Si prega di consultare il nostro %s per i dettagli.</target>
+			</trans-unit>
+            <trans-unit id="frontend.privacy.linktext" xml:space="preserve">
+                <source>privacy policy</source>
+				<target>Informativa sulla privacy</target>
+			</trans-unit>
+            <trans-unit id="frontend.privacy.button" xml:space="preserve">
+                <source>Accept</source>
+				<target>Accettare</target>
+			</trans-unit>
+        </body>
+    </file>
+</xliff>
