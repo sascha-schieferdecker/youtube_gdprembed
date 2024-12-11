@@ -44,7 +44,7 @@ class PreviewService implements SingletonInterface
     /**
      * @param mixed $typoScriptSettings
      */
-    public function setTypoScriptSettings($typoScriptSettings)
+    public function setTypoScriptSettings($typoScriptSettings): void
     {
         $this->typoScriptSettings = $typoScriptSettings;
     }
@@ -59,7 +59,7 @@ class PreviewService implements SingletonInterface
     /**
      * Load setup
      */
-    private function loadConfiguration() {
+    private function loadConfiguration(): void {
         $this->typoScriptSettings = $this->configurationManager->getConfiguration(
             \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
         )['plugin.']['tx_youtubegdprembed.']['settings.'];

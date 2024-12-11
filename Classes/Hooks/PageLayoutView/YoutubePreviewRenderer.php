@@ -33,7 +33,7 @@ class YoutubePreviewRenderer implements PageLayoutViewDrawItemHookInterface
      *
      * @return void
      */
-    public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row)
+    public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row): void
     {
         {
             if ($row['CType'] === 'youtubegdprembed_youtube') {

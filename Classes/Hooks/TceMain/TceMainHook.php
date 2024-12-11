@@ -27,7 +27,7 @@ class TceMainHook
      * @param array $fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler $pObj
      */
-    public function processDatamap_afterDatabaseOperations($status, $table, $id, array $fieldArray, \TYPO3\CMS\Core\DataHandling\DataHandler &$pObj) {
+    public function processDatamap_afterDatabaseOperations($status, $table, $id, array $fieldArray, \TYPO3\CMS\Core\DataHandling\DataHandler &$pObj): void {
         if ($status === 'update' && array_key_exists('youtubegdpr', $fieldArray)) {
             // Previewimage has to be updated
             $databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)

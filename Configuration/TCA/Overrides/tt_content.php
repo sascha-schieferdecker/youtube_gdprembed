@@ -32,12 +32,6 @@ $temporaryColumns = array (
             'type' => 'check',
             'renderType' => 'checkboxToggle',
             'default' => 0,
-            'items' => [
-                [
-                    0 => '',
-                    1 => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled',
-                ]
-            ],
         ],
     ],
 );

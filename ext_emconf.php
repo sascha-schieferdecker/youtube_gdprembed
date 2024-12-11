@@ -6,15 +6,11 @@ $EM_CONF['youtube_gdprembed'] = array(
     'author' => 'Sascha Schieferdecker',
     'author_email' => 'typo3@sascha-schieferdecker.de',
     'state' => 'beta',
-    'internal' => '',
-    'uploadfolder' => '0',
-    'createDirs' => '',
-    'clearCacheOnLoad' => 1,
     'version' => '2.0.1',
     'constraints' => array(
         'depends' =>
             [
-                'typo3' => '11.5.00-11.5.99',
+                'typo3' => '11.5.0-12.4.99',
             ],
         'conflicts' => [
 
