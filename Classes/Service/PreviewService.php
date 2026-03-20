@@ -70,15 +70,18 @@ class PreviewService
 
         $metaData = $this->getMeta($youtubeID);
         if ($metaData !== false) {
+            $file = null;
             if (is_string($metaData->thumbnail_url) && strlen($metaData->thumbnail_url) > 0) {
                 $file = $this->savePreviewImage($metaData->thumbnail_url, $youtubeID);
             }
 
             $data = [
-                'youtubegdpr_previewimage' => $file->getUid(),
                 'youtubegdpr_width' => $metaData->width,
                 'youtubegdpr_height' => $metaData->height,
             ];
+            if ($file !== null && $file !== false) {
+                $data['youtubegdpr_previewimage'] = $file->getUid();
+            }
 
             $databaseConnection->update('tt_content', $data, $where);
         } else {
