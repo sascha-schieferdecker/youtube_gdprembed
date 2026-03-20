@@ -58,7 +58,7 @@ class YoutubeProcessor implements DataProcessorInterface
                 // Transform File ID to file Object
                 $processedData['data']['youtubegdpr_previewimage'] = $this->resourceFactory->getFileObject($processedData['data']['youtubegdpr_previewimage']);
             }
-            catch (\Exception $e) {
+            catch (\Exception) {
                 $ytdata = $previewService->getData($processedData['data']['uid'], $processedData['data']['youtubegdpr']);
                 $processedData['data']['youtubegdpr_width'] = $ytdata['width'];
                 $processedData['data']['youtubegdpr_height'] = $ytdata['height'];

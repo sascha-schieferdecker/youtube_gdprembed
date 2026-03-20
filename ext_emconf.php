@@ -1,5 +1,5 @@
 <?php
-$EM_CONF['youtube_gdprembed'] = array(
+$EM_CONF['youtube_gdprembed'] = [
     'title' => 'Youtube GDPR compliant embed',
     'description' => 'User has to click before any content from youtube is loaded',
     'category' => 'plugin',
@@ -7,7 +7,7 @@ $EM_CONF['youtube_gdprembed'] = array(
     'author_email' => 'typo3@sascha-schieferdecker.de',
     'state' => 'beta',
     'version' => '2.0.1',
-    'constraints' => array(
+    'constraints' => [
         'depends' =>
             [
                 'typo3' => '11.5.0-13.4.99',
@@ -18,6 +18,6 @@ $EM_CONF['youtube_gdprembed'] = array(
         'suggests' => [
 
         ],
-    ),
-);
+    ],
+];
 

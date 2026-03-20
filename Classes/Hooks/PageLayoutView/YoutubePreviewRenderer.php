@@ -42,7 +42,7 @@ class YoutubePreviewRenderer implements PageLayoutViewDrawItemHookInterface
                     $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
                     try {
                         $file = $resourceFactory->getFileObject($row['youtubegdpr_previewimage']);
-                        $itemContent .= '<br><img src="' . $file->getPublicUrl(true).'" class="img-responsive" style="max-width: 200px">';
+                        $itemContent .= '<br><img src="' . $file->getPublicUrl().'" class="img-responsive" style="max-width: 200px">';
                     }
                     catch (\Exception $e) {
                         $itemContent .=  '<br>' . $e->getMessage();

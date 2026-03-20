@@ -117,7 +117,7 @@ class PreviewService implements SingletonInterface
      */
     private function getMeta($youtubeID) {
 
-        $url = 'https://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3D' . preg_replace("/[^a-zA-Z0-9]+/", "", $youtubeID) . '&format=json';
+        $url = 'https://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3D' . preg_replace("/[^a-zA-Z0-9]+/", "", (string) $youtubeID) . '&format=json';
 
 
         $result = GeneralUtility::getURL(
@@ -139,8 +139,8 @@ class PreviewService implements SingletonInterface
     }
 
     private function savePreviewImage($url, $youtubeID) {
-        $storage = explode(':', $this->typoScriptSettings['storagePreviewImages'])[0];
-        $folder = explode(':', $this->typoScriptSettings['storagePreviewImages'])[1];
+        $storage = explode(':', (string) $this->typoScriptSettings['storagePreviewImages'])[0];
+        $folder = explode(':', (string) $this->typoScriptSettings['storagePreviewImages'])[1];
         $falstorage = $this->resourceFactory->getStorageObject((int) $storage);
         try {
             $falfolder = $falstorage->getFolder($folder);
@@ -157,7 +157,7 @@ class PreviewService implements SingletonInterface
         catch (\Exception $e) {
             if (is_a($e, 'InvalidArgumentException')) {
                 // we prefer the highres image
-                $urlHQ = preg_replace("/hqdefault/", "maxresdefault", $url);
+                $urlHQ = preg_replace("/hqdefault/", "maxresdefault", (string) $url);
                 $previewImage = GeneralUtility::getUrl($urlHQ);
                 // load low res image as fallback
                 if ($previewImage === false) {
