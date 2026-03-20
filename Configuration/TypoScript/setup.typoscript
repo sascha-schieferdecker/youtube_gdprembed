@@ -34,4 +34,3 @@ page.includeCSSLibs {
 page.includeJSFooterlibs {
     youtubegdprembed = {$plugin.tx_youtubegdprembed.settings.jsFile}
 }
-
