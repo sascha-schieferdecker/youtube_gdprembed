@@ -1,15 +1,5 @@
 <?php
+
 if (!defined('TYPO3')) {
-    die ('Access denied.');
+    die('Access denied.');
 }
-$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-
-// Register hook to show preview of tt_content element of CType="youtubegdprembed_youtube" in page module
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['youtubegdprembed_youtube'] =
-    \SaschaSchieferdecker\YoutubeGdprembed\Hooks\PageLayoutView\YoutubePreviewRenderer::class;
-
-// Register hook to check if a new image has to be pulled after changind a video ID
-$GLOBALS ['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['youtube_gdprembed'] = \SaschaSchieferdecker\YoutubeGdprembed\Hooks\TceMain\TceMainHook::class;
-$GLOBALS ['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['youtube_gdprembed'] = \SaschaSchieferdecker\YoutubeGdprembed\Hooks\TceMain\TceMainHook::class;
-
-

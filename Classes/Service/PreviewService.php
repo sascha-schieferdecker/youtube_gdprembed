@@ -1,11 +1,8 @@
 <?php
-namespace SaschaSchieferdecker\YoutubeGdprembed\Service;
 
-use TYPO3\CMS\Core\Resource\ResourceFactory;
-use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+declare(strict_types=1);
+
+namespace SaschaSchieferdecker\YoutubeGdprembed\Service;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -20,62 +17,56 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  * The TYPO3 project - inspiring people to share!
  */
 
-class PreviewService implements SingletonInterface
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Http\ApplicationType;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+
+class PreviewService
 {
-    /**
-     * @var \TYPO3\CMS\Core\Resource\ResourceFactory
-     */
-    private $resourceFactory = null;
-    protected $typoScriptSettings = [];
+    protected array $typoScriptSettings = [];
 
-    /**
-     * @var ConfigurationManagerInterface
-     */
-    private $configurationManager = null;
+    public function __construct(
+        private readonly ResourceFactory $resourceFactory,
+        private readonly ConfigurationManagerInterface $configurationManager,
+    ) {}
 
-    /**
-     * @return mixed
-     */
-    public function getTypoScriptSettings()
+    public function getTypoScriptSettings(): array
     {
+        $this->ensureConfigurationLoaded();
         return $this->typoScriptSettings;
     }
 
-    /**
-     * @param mixed $typoScriptSettings
-     */
-    public function setTypoScriptSettings($typoScriptSettings): void
+    public function setTypoScriptSettings(array $typoScriptSettings): void
     {
         $this->typoScriptSettings = $typoScriptSettings;
     }
 
-    public function __construct()
+    private function ensureConfigurationLoaded(): void
     {
-        $this->resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-        $this->configurationManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
-        $this->loadConfiguration();
-    }
-
-    /**
-     * Load setup
-     */
-    private function loadConfiguration(): void {
+        if ($this->typoScriptSettings !== []) {
+            return;
+        }
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        if ($request === null || !ApplicationType::fromRequest($request)->isFrontend()) {
+            return;
+        }
         $this->typoScriptSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
-        )['plugin.']['tx_youtubegdprembed.']['settings.'];
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
+        )['plugin.']['tx_youtubegdprembed.']['settings.'] ?? [];
     }
 
     /**
      * Fetches, sets and returns metaData about the youtube video
-     * @param integer $contentID
-     * @param string $youtubeID
-     * @return array
      */
-    public function getData($contentID, $youtubeID) {
+    public function getData(int $contentID, string $youtubeID): array
+    {
+        $this->ensureConfigurationLoaded();
 
         $databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getConnectionForTable('tt_content');
-        $where = ['uid' => (int) $contentID];
+        $where = ['uid' => $contentID];
 
         $metaData = $this->getMeta($youtubeID);
         if ($metaData !== false) {
@@ -86,12 +77,11 @@ class PreviewService implements SingletonInterface
             $data = [
                 'youtubegdpr_previewimage' => $file->getUid(),
                 'youtubegdpr_width' => $metaData->width,
-                'youtubegdpr_height' => $metaData->height
+                'youtubegdpr_height' => $metaData->height,
             ];
 
             $databaseConnection->update('tt_content', $data, $where);
-        }
-        else {
+        } else {
             // try to save image at least
             $url = 'https://img.youtube.com/vi/' . $youtubeID . '/0.jpg';
             $file = $this->savePreviewImage($url, $youtubeID);
@@ -104,48 +94,36 @@ class PreviewService implements SingletonInterface
             }
         }
         return [
-            'file' => $file,
+            'file' => $file ?? false,
             'width' => $metaData->width ?? 0,
-            'height' => $metaData->height ?? 0
+            'height' => $metaData->height ?? 0,
         ];
     }
 
-    /**
-     * Get Information about video using omembed API
-     * @param $youtubeID
-     * @return mixed
-     */
-    private function getMeta($youtubeID) {
+    private function getMeta(string $youtubeID): mixed
+    {
+        $url = 'https://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3D' . preg_replace("/[^a-zA-Z0-9]+/", '', $youtubeID) . '&format=json';
 
-        $url = 'https://www.youtube.com/oembed?url=http%3A//www.youtube.com/watch?v%3D' . preg_replace("/[^a-zA-Z0-9]+/", "", (string) $youtubeID) . '&format=json';
-
-
-        $result = GeneralUtility::getURL(
-            $url
-        );
+        $result = GeneralUtility::getURL($url);
         if ($result !== false) {
-            $json = \json_decode($result);
+            $json = json_decode($result);
             if (is_object($json)) {
                 return $json;
             }
-            else {
-                return false;
-            }
         }
-        else {
-            return false;
-        }
-
+        return false;
     }
 
-    private function savePreviewImage($url, $youtubeID) {
-        $storage = explode(':', (string) $this->typoScriptSettings['storagePreviewImages'])[0];
-        $folder = explode(':', (string) $this->typoScriptSettings['storagePreviewImages'])[1];
-        $falstorage = $this->resourceFactory->getStorageObject((int) $storage);
+    private function savePreviewImage(string $url, string $youtubeID): mixed
+    {
+        $this->ensureConfigurationLoaded();
+
+        $storage = explode(':', (string)$this->typoScriptSettings['storagePreviewImages'])[0];
+        $folder = explode(':', (string)$this->typoScriptSettings['storagePreviewImages'])[1];
+        $falstorage = $this->resourceFactory->getStorageObject((int)$storage);
         try {
             $falfolder = $falstorage->getFolder($folder);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             if (is_a($e, 'TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException')) {
                 $falfolder = $falstorage->createFolder($folder);
             }
@@ -153,11 +131,10 @@ class PreviewService implements SingletonInterface
         $identifier = str_replace('//', '/', $this->typoScriptSettings['storagePreviewImages'] . '/' . $youtubeID . '.jpg');
         try {
             $file = $this->resourceFactory->getFileObjectFromCombinedIdentifier($identifier);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             if (is_a($e, 'InvalidArgumentException')) {
                 // we prefer the highres image
-                $urlHQ = preg_replace("/hqdefault/", "maxresdefault", (string) $url);
+                $urlHQ = preg_replace("/hqdefault/", 'maxresdefault', $url);
                 $previewImage = GeneralUtility::getUrl($urlHQ);
                 // load low res image as fallback
                 if ($previewImage === false) {
@@ -171,14 +148,9 @@ class PreviewService implements SingletonInterface
                 }
             }
         }
-        if (is_a($file, 'TYPO3\CMS\Core\Resource\File')) {
+        if (is_a($file ?? null, 'TYPO3\CMS\Core\Resource\File')) {
             return $file;
         }
-        else {
-            return false;
-        }
-
-
-
+        return false;
     }
 }

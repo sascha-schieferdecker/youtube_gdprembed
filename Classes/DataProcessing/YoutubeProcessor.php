@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace SaschaSchieferdecker\YoutubeGdprembed\DataProcessing;
 
 /*
@@ -15,61 +18,50 @@ namespace SaschaSchieferdecker\YoutubeGdprembed\DataProcessing;
  */
 
 use TYPO3\CMS\Core\Resource\ResourceFactory;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use SaschaSchieferdecker\YoutubeGdprembed\Service\PreviewService;
 
-/**
- * Class for data processing for the content element "My new content element"
- */
 class YoutubeProcessor implements DataProcessorInterface
 {
-    private $resourceFactory = null;
+    public function __construct(
+        private readonly ResourceFactory $resourceFactory,
+        private readonly PreviewService $previewService,
+    ) {}
 
-    /**
-     * Process data for the content element "My new content element"
-     *
-     * @param ContentObjectRenderer $cObj The data of the content element or page
-     * @param array $contentObjectConfiguration The configuration of Content Object
-     * @param array $processorConfiguration The configuration of this processor
-     * @param array $processedData Key/value store of processed data (e.g. to be passed to a Fluid View)
-     * @return array the processed data as key/value store
-     */
     public function process(
         ContentObjectRenderer $cObj,
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    )
-    {
-        $this->resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-
-        $previewService = GeneralUtility::makeInstance(PreviewService::class);
-
+    ): array {
         if ($processedData['data']['youtubegdpr_width'] === 0 && $processedData['data']['youtubegdpr_height'] === 0) {
-            $ytdata = $previewService->getData($processedData['data']['uid'], $processedData['data']['youtubegdpr']);
+            $ytdata = $this->previewService->getData(
+                (int)$processedData['data']['uid'],
+                (string)$processedData['data']['youtubegdpr']
+            );
             $processedData['data']['youtubegdpr_width'] = $ytdata['width'];
             $processedData['data']['youtubegdpr_height'] = $ytdata['height'];
             $processedData['data']['youtubegdpr_previewimage'] = $ytdata['file'];
-        }
-        else {
+        } else {
             try {
-                // Transform File ID to file Object
-                $processedData['data']['youtubegdpr_previewimage'] = $this->resourceFactory->getFileObject($processedData['data']['youtubegdpr_previewimage']);
-            }
-            catch (\Exception) {
-                $ytdata = $previewService->getData($processedData['data']['uid'], $processedData['data']['youtubegdpr']);
+                $processedData['data']['youtubegdpr_previewimage'] = $this->resourceFactory->getFileObject(
+                    $processedData['data']['youtubegdpr_previewimage']
+                );
+            } catch (\Exception) {
+                $ytdata = $this->previewService->getData(
+                    (int)$processedData['data']['uid'],
+                    (string)$processedData['data']['youtubegdpr']
+                );
                 $processedData['data']['youtubegdpr_width'] = $ytdata['width'];
                 $processedData['data']['youtubegdpr_height'] = $ytdata['height'];
                 $processedData['data']['youtubegdpr_previewimage'] = $ytdata['file'];
             }
         }
 
-        // Check if a cookie has to be set on first acceptance of terms
-        $config = $previewService->getTypoScriptSettings();
-        $processedData['data']['youtubegdpr_persistacceptance'] = (int) $config['persistAcceptance'];
-        $processedData['data']['youtubegdpr_privacyPage'] = (int) $config['privacyPage'];
+        $config = $this->previewService->getTypoScriptSettings();
+        $processedData['data']['youtubegdpr_persistacceptance'] = (int)($config['persistAcceptance'] ?? 0);
+        $processedData['data']['youtubegdpr_privacyPage'] = (int)($config['privacyPage'] ?? 0);
 
         return $processedData;
     }
